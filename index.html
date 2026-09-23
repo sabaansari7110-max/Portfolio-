@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saba Ansari — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1220;
+    --surface:#101A2B;
+    --surface-2:#152238;
+    --line:#233450;
+    --ink:#E9EDF3;
+    --muted:#8C9AB3;
+    --gold:#C9A66B;
+    --teal:#3FA79A;
+    --serif:'Fraunces', serif;
+    --sans:'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- Layout: sidebar + content ---------- */
+  .shell{display:grid; grid-template-columns: 300px 1fr; min-height:100vh;}
+  @media (max-width: 880px){ .shell{grid-template-columns: 1fr;} }
+
+  .side{
+    position:sticky; top:0; align-self:start; height:100vh;
+    border-right:1px solid var(--line);
+    padding:44px 32px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  @media (max-width: 880px){
+    .side{position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:32px 24px;}
+  }
+
+  .brand-mark{font-family:var(--serif); font-weight:600; font-size:1.05rem; color:var(--gold); margin-bottom:6px;}
+  .brand-name{font-family:var(--serif); font-weight:600; font-size:1.85rem; line-height:1.15; margin-bottom:10px;}
+  .brand-role{color:var(--muted); font-size:0.95rem; max-width:22ch;}
+
+  .side nav{margin-top:44px;}
+  .side nav a{
+    display:block; padding:9px 0; font-size:0.92rem; color:var(--muted);
+    border-bottom:1px solid transparent; text-decoration:none; transition:color .15s;
+  }
+  .side nav a:hover{color:var(--ink);}
+  @media (max-width: 880px){ .side nav{display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:20px;} .side nav a{padding:2px 0;} }
+
+  .side-foot{font-size:0.82rem; color:var(--muted); margin-top:40px;}
+  .side-foot a{text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px;}
+  .side-foot a:hover{color:var(--gold); text-decoration-color:var(--gold);}
+  .side-foot .row{margin-bottom:6px;}
+  @media (max-width: 880px){ .side-foot{display:none;} }
+
+  main{overflow:hidden;}
+  section{padding:88px 48px; border-bottom:1px solid var(--line);}
+  @media (max-width: 880px){ section{padding:56px 24px;} }
+  section:last-child{border-bottom:none;}
+
+  .eyebrow{font-family:var(--mono); font-size:0.78rem; color:var(--teal); letter-spacing:0.02em; margin-bottom:14px;}
+  h2{font-family:var(--serif); font-weight:600; font-size:2rem; margin-bottom:28px; max-width:16ch;}
+
+  /* ---------- Hero ---------- */
+  .hero h1{
+    font-family:var(--serif); font-weight:600; font-size:clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height:1.12; max-width:15ch; margin-bottom:26px;
+  }
+  .hero .lede{font-size:1.08rem; color:var(--muted); max-width:56ch; margin-bottom:36px;}
+  .hero .lede strong{color:var(--ink); font-weight:500;}
+  .stat-row{display:flex; gap:44px; flex-wrap:wrap; margin-top:10px;}
+  .stat-row .stat b{
+    display:block; font-family:var(--serif); font-weight:600; font-size:2rem; color:var(--gold); line-height:1;
+  }
+  .stat-row .stat span{display:block; font-size:0.82rem; color:var(--muted); margin-top:6px;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns: 1.4fr 1fr; gap:56px;}
+  @media (max-width: 720px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--muted); margin-bottom:16px; max-width:62ch;}
+  .about-grid p strong{color:var(--ink); font-weight:500;}
+  .pathway{border-left:2px solid var(--line); padding-left:20px;}
+  .pathway .step{margin-bottom:22px;}
+  .pathway .step b{display:block; font-family:var(--serif); font-size:1.02rem; margin-bottom:3px;}
+  .pathway .step span{font-size:0.86rem; color:var(--muted);}
+
+  /* ---------- Skills ---------- */
+  .skill-cols{display:grid; grid-template-columns:repeat(3, 1fr); gap:32px;}
+  @media (max-width: 720px){ .skill-cols{grid-template-columns:1fr 1fr;} }
+  @media (max-width: 480px){ .skill-cols{grid-template-columns:1fr;} }
+  .skill-cols h4{font-family:var(--mono); font-size:0.78rem; color:var(--teal); font-weight:500; margin-bottom:12px;}
+  .skill-cols ul{list-style:none;}
+  .skill-cols li{font-size:0.94rem; padding:6px 0; border-bottom:1px solid var(--line); color:var(--ink);}
+  .skill-cols li:last-child{border-bottom:none;}
+
+  /* ---------- Projects ---------- */
+  .project{
+    display:grid; grid-template-columns: 1fr 1.6fr; gap:40px;
+    padding:36px 0; border-bottom:1px solid var(--line);
+  }
+  .project:first-of-type{padding-top:0;}
+  .project:last-of-type{border-bottom:none; padding-bottom:0;}
+  @media (max-width: 780px){ .project{grid-template-columns:1fr; gap:18px;} }
+
+  .project .figure{
+    background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:22px;
+  }
+  .project .figure .big-stat{font-family:var(--serif); font-weight:600; font-size:2.6rem; color:var(--gold); line-height:1;}
+  .project .figure .big-stat-label{font-size:0.82rem; color:var(--muted); margin-top:8px;}
+  .project .figure .mini-breakdown{margin-top:20px; display:flex; flex-direction:column; gap:9px;}
+  .project .figure .mini-breakdown .bar-row{display:flex; align-items:center; gap:10px; font-size:0.82rem;}
+  .project .figure .mini-breakdown .bar-label{width:44px; color:var(--muted); flex-shrink:0;}
+  .project .figure .mini-breakdown .bar-track{flex:1; height:8px; background:var(--surface-2); border-radius:2px; overflow:hidden;}
+  .project .figure .mini-breakdown .bar-fill{height:100%; background:var(--teal); border-radius:2px;}
+  .project .figure .mini-breakdown .bar-val{width:52px; text-align:right; font-family:var(--mono); font-size:0.78rem; color:var(--ink);}
+
+  .project .figure.plain{display:flex; flex-direction:column; justify-content:center; gap:14px;}
+  .project .figure.plain .kv{display:flex; justify-content:space-between; font-size:0.86rem; border-bottom:1px solid var(--line); padding-bottom:10px;}
+  .project .figure.plain .kv:last-child{border-bottom:none; padding-bottom:0;}
+  .project .figure.plain .kv span:first-child{color:var(--muted);}
+  .project .figure.plain .kv span:last-child{font-family:var(--mono); color:var(--ink);}
+
+  .project .body h3{font-family:var(--serif); font-weight:600; font-size:1.35rem; margin-bottom:4px;}
+  .project .body .tools{font-family:var(--mono); font-size:0.78rem; color:var(--teal); margin-bottom:14px;}
+  .project .body p{color:var(--muted); font-size:0.95rem; margin-bottom:12px; max-width:58ch;}
+  .project .body ul{margin:10px 0 14px 0; padding-left:18px; color:var(--muted); font-size:0.9rem;}
+  .project .body ul li{margin-bottom:5px;}
+  .project .body ul li strong{color:var(--ink); font-weight:500;}
+  .project .body a.link{
+    display:inline-block; margin-top:6px; font-size:0.88rem; color:var(--gold);
+    border-bottom:1px solid var(--gold); text-decoration:none; padding-bottom:1px;
+  }
+  .project .body a.link:hover{color:var(--ink); border-color:var(--ink);}
+
+  /* ---------- Certifications ---------- */
+  .cert-list{display:flex; flex-direction:column;}
+  .cert{display:flex; justify-content:space-between; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line); gap:16px;}
+  .cert:last-child{border-bottom:none;}
+  .cert .name{font-family:var(--serif); font-size:1.02rem;}
+  .cert .issuer{font-size:0.84rem; color:var(--muted); margin-top:3px;}
+  .cert .when{font-family:var(--mono); font-size:0.78rem; color:var(--muted); white-space:nowrap;}
+
+  /* ---------- Contact ---------- */
+  .contact h2{margin-bottom:16px;}
+  .contact p{color:var(--muted); max-width:52ch; margin-bottom:28px;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:14px;}
+  .contact-links a{
+    font-size:0.92rem; padding:12px 20px; border:1px solid var(--line); border-radius:4px;
+    text-decoration:none; transition:border-color .15s, color .15s;
+  }
+  .contact-links a:hover{border-color:var(--gold); color:var(--gold);}
+  footer{padding:24px 48px; font-size:0.78rem; color:var(--muted); font-family:var(--mono);}
+  @media (max-width: 880px){ footer{padding:20px 24px;} }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side">
+    <div>
+      <div class="brand-mark">Portfolio</div>
+      <div class="brand-name">Saba Ansari</div>
+      <div class="brand-role">Data Analyst — pharmacy background, data-driven mindset</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="side-foot">
+      <div class="row">Based in India · open to remote</div>
+      <div class="row"><a href="mailto:sabaansari7110@gmail.com">sabaansari7110@gmail.com</a></div>
+      <div class="row"><a href="tel:+919286960802">+91 92869 60802</a></div>
+      <div class="row"><a href="https://github.com/sabaansari7110-max" target="_blank" rel="noopener">github.com/sabaansari7110-max</a></div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="eyebrow">Data Analytics — Dashboards · SQL · Python</div>
+      <h1>I turn scattered records into decisions someone can act on.</h1>
+      <p class="lede">
+        Trained as a pharmacist, now working as a data analyst.
+        <strong>Nine months of clinical internships taught me to read messy records fast —
+        I bring that same discipline to dashboards and SQL.</strong>
+        Open to Data Analyst, Business Analyst, MIS Executive, and Dashboard Developer roles.
+      </p>
+      <div class="stat-row">
+        <div class="stat"><b>6+</b><span>dashboards &amp; pipelines built</span></div>
+        <div class="stat"><b>9 mo</b><span>clinical internship experience</span></div>
+        <div class="stat"><b>160K+</b><span>rows processed in one pipeline</span></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="eyebrow">About</div>
+      <h2>From the ward to the workbook</h2>
+      <div class="about-grid">
+        <div>
+          <p>D.Pharm graduate with nine months of hospital and clinic internships — reading
+            patient histories, spotting what mattered, and reporting it to people who needed to
+            act fast. <strong>Data analytics is the same skill in a new setting:</strong> since
+            then I've built dashboards in Tableau and Power BI, written SQL from scratch, and used
+            Python to clean and restructure raw data.</p>
+        </div>
+        <div class="pathway">
+          <div class="step"><b>D.Pharm</b><span>Keshav Pharmacy College, Muzaffarnagar</span></div>
+          <div class="step"><b>Clinical internships</b><span>Hospital &amp; clinic settings, 9 months</span></div>
+          <div class="step"><b>Google Data Analytics Certificate</b><span>Data lifecycle, visualization, stakeholder communication</span></div>
+          <div class="step"><b>Power BI Data Analyst Professional Cert.</b><span>Coursera, 8 courses incl. PL-300 prep</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="eyebrow">Skills</div>
+      <h2>What I work with</h2>
+      <div class="skill-cols">
+        <div>
+          <h4>Visualization</h4>
+          <ul>
+            <li>Power BI + DAX</li>
+            <li>Tableau &amp; Tableau Public</li>
+            <li>Excel Pivot Tables &amp; charts</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Data &amp; Code</h4>
+          <ul>
+            <li>SQL (MySQL)</li>
+            <li>Python (pandas, OOP)</li>
+            <li>Excel formulas — lookup, logical, date/text</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Working style</h4>
+          <ul>
+            <li>Data cleaning &amp; structuring</li>
+            <li>Stakeholder-ready reporting</li>
+            <li>Domain read: healthcare data</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="eyebrow">Projects</div>
+      <h2>Case studies</h2>
+
+      <div class="project">
+        <div class="figure">
+          <div class="big-stat">23,709</div>
+          <div class="big-stat-label">career runs analysed across 516 international matches</div>
+          <div class="mini-breakdown">
+            <div class="bar-row"><span class="bar-label">ODI</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--gold);"></div></div><span class="bar-val">12,327</span></div>
+            <div class="bar-row"><span class="bar-label">Test</span><div class="bar-track"><div class="bar-fill" style="width:65%;"></div></div><span class="bar-val">8,074</span></div>
+            <div class="bar-row"><span class="bar-label">T20I</span><div class="bar-track"><div class="bar-fill" style="width:27%;"></div></div><span class="bar-val">3,308</span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Virat Kohli — Performance Analysis</h3>
+          <div class="tools">Excel Pivot Tables · Power BI</div>
+          <p>Career batting analysis across formats and 18 oppositions — pivot tables into a
+            Power BI dashboard.</p>
+          <ul>
+            <li><strong>ODI is the dominant format</strong> — 52% of career runs, ahead of Test (34%) and T20I (14%)</li>
+            <li>Strongest run-scoring record against Australia (4,483 runs, 95 matches), West Indies, Sri Lanka, and England</li>
+            <li>Thin but efficient record against associate nations (Netherlands, Scotland) reflects fixture scarcity, not form</li>
+            <li>Built from a cleaned 516-match dataset with ground, opposition, format, and date fields, summarised with pivot tables before moving into Power BI</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="figure">
+          <div class="big-stat">12%</div>
+          <div class="big-stat-label">of patients flagged high-risk</div>
+          <div class="mini-breakdown">
+            <div class="bar-row"><span class="bar-label">Records</span><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><span class="bar-val">3,000+</span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Heart Attack Risk Dashboard</h3>
+          <div class="tools">Tableau</div>
+          <p>Risk patterns across 3,000+ patient records — informed by my pharmacy internship
+            experience reading patient data.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="figure">
+          <div class="big-stat">24.7%</div>
+          <div class="big-stat-label">return rate — top flagged business risk</div>
+          <div class="mini-breakdown">
+            <div class="bar-row"><span class="bar-label">Txns</span><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><span class="bar-val">1,500+</span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Sales Analytics Dashboard</h3>
+          <div class="tools">Tableau + Power BI (same dataset, both tools)</div>
+          <p>Built twice, deliberately: the same 1,500+ transaction dataset in both Tableau and
+            Power BI, to prove comfort switching tools.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="figure plain">
+          <div class="kv"><span>Pipeline</span><span>Python → MySQL → SQL → Excel</span></div>
+          <div class="kv"><span>Dashboard</span><span>Power BI</span></div>
+          <div class="kv"><span>Covers</span><span>Headcount, attrition, salary</span></div>
+        </div>
+        <div class="body">
+          <h3>HR Attrition Data Pipeline &amp; Dashboard</h3>
+          <div class="tools">Python · MySQL · SQL · Power BI</div>
+          <p>End-to-end build: Python → MySQL → SQL → Excel, then a Power BI report on headcount,
+            attrition, and salary.</p>
+          <p><a class="link" href="https://github.com/sabaansari7110-max" target="_blank" rel="noopener">View repository →</a></p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="figure plain">
+          <div class="kv"><span>Repo 1</span><span>create-sql-table</span></div>
+          <div class="kv"><span>Covers</span><span>DB creation, foreign keys, updates</span></div>
+          <div class="kv"><span>Repo 2</span><span>Python OOP</span></div>
+          <div class="kv"><span>Covers</span><span>Classes, inheritance, dunder methods</span></div>
+        </div>
+        <div class="body">
+          <h3>SQL &amp; Python Fundamentals</h3>
+          <div class="tools">MySQL · Python</div>
+          <p>Practice repos behind the dashboards above: SQL fundamentals, and Python OOP with
+            documented READMEs.</p>
+          <p><a class="link" href="https://github.com/sabaansari7110-max" target="_blank" rel="noopener">View repositories →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="eyebrow">Certifications</div>
+      <h2>Coursework &amp; credentials</h2>
+      <div class="cert-list">
+        <div class="cert">
+          <div><div class="name">Power BI Data Analyst Professional Certificate</div><div class="issuer">Coursera — 8 courses, incl. PL-300 exam prep</div></div>
+          <div class="when">2026</div>
+        </div>
+        <div class="cert">
+          <div><div class="name">Google Data Analytics Certificate</div><div class="issuer">Data lifecycle, visualization, stakeholder communication</div></div>
+          <div class="when">2026</div>
+        </div>
+        <div class="cert">
+          <div><div class="name">Introduction to Generative AI</div><div class="issuer">Google Cloud, via Coursera</div></div>
+          <div class="when">2026</div>
+        </div>
+        <div class="cert">
+          <div><div class="name">Virtual experience programs</div><div class="issuer">Deloitte, BCG, Tata — via Forage</div></div>
+          <div class="when">2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's talk</h2>
+      <p>Open to Data Analyst, Business Analyst, MIS Executive, and Dashboard Developer roles —
+        remote-first, open to in-person across India.</p>
+      <div class="contact-links">
+        <a href="mailto:sabaansari7110@gmail.com">sabaansari7110@gmail.com</a>
+        <a href="tel:+919286960802">+91 92869 60802</a>
+        <a href="https://github.com/sabaansari7110-max" target="_blank" rel="noopener">github.com/sabaansari7110-max</a>
+      </div>
+    </section>
+
+    <footer>Saba Ansari — Data Analytics Portfolio</footer>
+  </main>
+</div>
+
+</body>
+</html>
